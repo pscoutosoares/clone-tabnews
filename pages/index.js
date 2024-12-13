@@ -12,8 +12,8 @@ function Home() {
 
   return (
     <div>
-      <h1>Doguito aleatório</h1>
-      {image && <img src={image.url} width={image.width} />}
+      <h1>Doguito aleatório:</h1>
+      {image && <img src={image.url} width="300" />}
     </div>
   );
 }
