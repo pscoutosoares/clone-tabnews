@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Image } from "@next/image";
 function Home() {
   const [image, setImage] = useState(null);
   useEffect(() => {
@@ -13,7 +14,7 @@ function Home() {
   return (
     <div>
       <h1>Doguito aleatório</h1>
-      {image && <img src={image.url} width={image.width} />}
+      {image && <Image src={image.url} width={image.width} alt="" />}
     </div>
   );
 }
