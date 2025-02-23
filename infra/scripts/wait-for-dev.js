@@ -1,5 +1,4 @@
 const { spawn } = require("node:child_process");
-
 spawn("next dev", { stdio: "inherit", shell: true });
 
 function gracefulShutdown() {
