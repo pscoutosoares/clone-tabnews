@@ -1,6 +1,33 @@
+import { createRouter } from "next-connect";
 import database from "infra/database";
+import { InternalServerError, MethodNotAllowedError } from "infra/errors";
 
-async function status(request, response) {
+const router = createRouter();
+
+router.get(getHandler);
+
+export default router.handler({
+  onNoMatch: onNoMatchHandler,
+  onError: onErrorHandler,
+});
+
+function onNoMatchHandler(request, response) {
+  const publicErrorObject = new MethodNotAllowedError();
+  response.status(publicErrorObject.statusCode).json(publicErrorObject);
+}
+
+function onErrorHandler(error, request, response) {
+  const publicErrorObject = new InternalServerError({
+    cause: error,
+  });
+
+  console.log("\n Erro dentro do catch do next-connect:");
+  console.error(publicErrorObject);
+
+  response.status(500).json(publicErrorObject);
+}
+
+async function getHandler(request, response) {
   const updatedAt = new Date().toISOString();
   const maxConnections = await database.query("SHOW max_connections;");
   const currentConnections = await database.query({
@@ -19,5 +46,3 @@ async function status(request, response) {
     },
   });
 }
-
-export default status;
