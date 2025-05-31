@@ -23,7 +23,6 @@ function UpdatedAt() {
   });
   JSON.stringify(data, null, 2);
   let UpdatedAtText = "Carregando...";
-  console.log(data);
   if (!isLoading && data) {
     UpdatedAtText = new Date(data.updated_at).toLocaleString("pt-br");
   }
@@ -39,8 +38,6 @@ function DatabaseStatus() {
   let version,
     openConnections,
     maxConnections = "Carregando...";
-
-  console.log(data);
   if (!isLoading && data) {
     version = data.dependencies.database.version;
     openConnections = data.dependencies.database.opened_connections;
