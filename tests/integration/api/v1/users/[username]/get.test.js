@@ -3,7 +3,7 @@ import orchestrator from "tests/orchestrator.js";
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
   await orchestrator.clearDatabase();
-  await orchestrator.runMigrations();
+  await orchestrator.runPendingMigrations();
 });
 
 const ENDPOINT_URL = "http://localhost:3000/api/v1/users";
