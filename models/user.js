@@ -44,7 +44,6 @@ async function findOneByEmail(email) {
         ;`,
       values: [email],
     });
-
     if (results.rowCount === 0) {
       throw new NotFoundError({
         message: "O email informado não foi encontrado no sistema.",
